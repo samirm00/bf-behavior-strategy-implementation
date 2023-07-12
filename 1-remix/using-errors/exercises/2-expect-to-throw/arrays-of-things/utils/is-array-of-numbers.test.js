@@ -1,5 +1,3 @@
-// #todo
-
 import { isArrayOfNumbers } from './is-array-of-numbers.js';
 
 describe('isArrayOfNumbers: determines if an array contains only valid numbers', () => {
