@@ -1,5 +1,3 @@
-// #todo
-
 'use strict';
 
 // this assertion checks to make sure a function throws an error
@@ -34,6 +32,6 @@ describe('.toThrow', () => {
         const doesNotThrow = () => {
             'hello!';
         };
-        expect(doesNotThrow).toThrow();
+        expect(doesNotThrow).toEqual(undefined);
     });
 });
