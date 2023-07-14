@@ -1,5 +1,3 @@
-// #todo
-
 'use strict';
 
 /**
@@ -10,11 +8,62 @@
  */
 
 // -------- your solutions --------
+const keepOnlyEvenNumbers1 = (arr) => {
+    // copy arr
+    const arrCopy = [...arr];
+    // make sure all items are number
+    const allAreNumbers = arrCopy.every((item) => typeof item === 'number');
+    if (!allAreNumbers) {
+        return [];
+    }
 
-for (const solution of [secretSolution]) {
-    describe(solution.name + ': _', () => {
-        describe('_', () => {
-            it('_', () => {});
+    return arrCopy.filter((item) => item % 2 === 0);
+};
+
+const keepOnlyEvenNumbers2 = (arr) => {
+    // copy arr
+    const arrCopy = [...arr];
+    // make sure all items are number
+    const allAreNumbers = arrCopy.every((item) => typeof item === 'number');
+    if (!allAreNumbers) {
+        return [];
+    }
+
+    const onlyEven = [];
+    for (let i = 0; i < arrCopy.length; i++) {
+        if (arrCopy[i] % 2 === 0) {
+            onlyEven.push(arrCopy[i]);
+        }
+    }
+
+    return onlyEven;
+};
+const mySolutions = [keepOnlyEvenNumbers1, keepOnlyEvenNumbers2];
+
+for (const solution of mySolutions) {
+    describe(solution.name + ': keep only even items', () => {
+        it('returns an empty array when input contains non-number elements', () => {
+            const input = [1, 2, '3', 4, 5];
+            const output = solution(input);
+            expect(output).toEqual([]);
+        });
+
+        it('returns an array containing only even numbers', () => {
+            const input = [1, 2, 3, 4, 5, 6];
+            const output = solution(input);
+            expect(output).toEqual([2, 4, 6]);
+        });
+
+        it('returns an empty array when input is an empty array', () => {
+            const input = [];
+            const output = solution(input);
+            expect(output).toEqual([]);
+        });
+
+        it('returns an empty array when input contains no even numbers', () => {
+            const input = [1, 3, 5, 7];
+            const output = solution(input);
+            expect(output).toEqual([]);
         });
     });
 }

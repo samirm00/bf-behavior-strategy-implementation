@@ -9,7 +9,27 @@
  * @returns {number[]} an array of all numbers from 0 to `max`
  */
 
+const countUp1 = (num = 0) => {
+    const arr = [];
+    for (let i = 0; i <= num; i++) {
+        arr.push(i);
+    }
+
+    return arr;
+};
+
+const countUp2 = (num = 0) => {
+    const arr = [];
+    let i = 0;
+    while (i <= num) {
+        arr.push(i);
+        num--;
+    }
+    return arr;
+};
+
 // -------- your solutions --------
+const mySolutions = [countUp1, countUp2];
 
 for (const solution of [secretSolution]) {
     // the main test suite for the function

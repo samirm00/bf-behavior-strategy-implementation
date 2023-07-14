@@ -1,5 +1,3 @@
-// #todo
-
 'use strict';
 
 /**
@@ -19,7 +17,10 @@ const mapFilterReduce = (arr) => {
     const castToNumber = (entry) => Number(entry);
 
     // fill in the array methods and pass in the correct logic
-    const sumOfNumberies = arr._(_)._(_)._(_, _);
+    const sumOfNumberies = arr
+        .map(castToNumber)
+        .filter(isNotNaN)
+        .reduce(sumNumbers, 0);
 
     return sumOfNumberies;
 };
@@ -27,12 +28,31 @@ const mapFilterReduce = (arr) => {
 // -------- your solutions --------
 
 for (const solution of [
-    secretSolution,
-    // mapFilterReduce,
+    //secretSolution,
+    mapFilterReduce,
 ]) {
-    describe(solution.name + ': _', () => {
-        describe('_', () => {
-            it('_', () => {});
+    describe(solution.name + 'sumNumberyStrings', () => {
+        it('returns 0 for an empty array', () => {
+            const result = sumNumberyStrings([]);
+            expect(result).toBe(0);
+        });
+
+        it('returns the sum of numbery strings', () => {
+            const arr = ['12', '34', '56', 'abc', '78'];
+            const result = sumNumberyStrings(arr);
+            expect(result).toBe(12 + 34 + 56 + 78);
+        });
+
+        it('returns 0 if no numbery strings are found', () => {
+            const arr = ['abc', 'def', 'xyz'];
+            const result = sumNumberyStrings(arr);
+            expect(result).toBe(0);
+        });
+
+        it('does not modify the original array', () => {
+            const arr = ['12', '34', '56'];
+            sumNumberyStrings(arr);
+            expect(arr).toEqual(['12', '34', '56']);
         });
     });
 }

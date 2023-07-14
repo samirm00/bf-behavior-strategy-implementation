@@ -8,7 +8,7 @@ import { isArrayOfNumbers } from './utils/is-array-of-numbers.js';
  */
 export const numberOfEvens = (numbers = []) => {
     if (!isArrayOfNumbers(numbers)) {
-        throw new TypeError('Input must be an array of numbers.');
+        throw new TypeError('numbers must be an array of numbers.');
     }
 
     let evenCount = 0;

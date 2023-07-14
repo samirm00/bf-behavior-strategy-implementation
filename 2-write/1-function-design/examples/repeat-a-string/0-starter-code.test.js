@@ -1,5 +1,3 @@
-// #todo
-
 'use strict';
 
 /* 0. Starter Code
@@ -24,15 +22,48 @@
  */
 
 // =============== your solutions will go here ===============
+const repeatStr1 = (text = '', repetitions = 1) => {
+    return text.repeat(repetitions);
+};
+
+const repeatStr2 = (text = '', repetitions = 1) => {
+    let newText = '';
+    for (let i = 0; i < repetitions; i++) {
+        newText += text;
+    }
+    return newText;
+};
 
 // =============== a for-of loop to control which solution(s) are tested ===============
 
-for (const solution of [secretSolution]) {
+const mySolutions = [repeatStr1, repeatStr2];
+for (const solution of mySolutions) {
     // =============== test cases for this challenge ===============
+    describe('Repeats a string a specific number of times', () => {
+        describe('if both text and repetitions passed ', () => {
+            it('hi , 5 -> hihihihihi', () => {
+                expect(solution('hi', 5)).toEqual('hihihihihi');
+            });
 
-    describe(solution.name + ': _', () => {
-        describe('_', () => {
-            it('_', () => {});
+            it('go to school , 2 -> go to schoolgo to school', () => {
+                expect(solution('go to school', 2)).toEqual(
+                    'go to schoolgo to school',
+                );
+            });
+
+            it('merci , 2 -> mercimerci', () => {
+                expect(solution('merci', 2)).toEqual('mercimerci');
+            });
+        });
+
+        describe('default parameters ', () => {
+            it(' "" , 3 -> hihihihihi', () => {
+                expect(solution('', 3)).toEqual('');
+            });
+
+            it(' table ,  -> table', () => {
+                expect(solution('table')).toEqual('table');
+            });
         });
     });
 }

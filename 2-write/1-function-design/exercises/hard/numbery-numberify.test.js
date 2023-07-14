@@ -1,5 +1,3 @@
-// #todo
-
 'use strict';
 
 /**
@@ -13,11 +11,57 @@
  */
 
 // -------- your solutions --------
+const convertToNumbers1 = (arr) => {
+    // copy arr
+    const arrCopy = [...arr];
+    return arrCopy
+        .map((item) => Number(item))
+        .filter((item) => !Number.isNaN(item));
+};
 
-for (const solution of [secretSolution]) {
-    describe(solution.name + ': _', () => {
-        describe('_', () => {
-            it('_', () => {});
+const convertToNumbers2 = (arr) => {
+    const onlyNumbers = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (!Number.isNaN(Number(arr[i]))) {
+            onlyNumbers.push(Number(arr[i]));
+        }
+    }
+
+    return onlyNumbers;
+};
+
+const mySolutions = [convertToNumbers1, convertToNumbers2];
+
+for (const solution of mySolutions) {
+    describe(solution.name + 'convertToNumbers', () => {
+        test('should convert all valid string numbers to numbers', () => {
+            const arr = ['10', '20', '30', 'test'];
+            const result = solution(arr);
+            expect(result).toEqual([10, 20, 30]);
+        });
+
+        test('should ignore non-numeric values in the array', () => {
+            const arr = ['10', 'abc', '20', 'xyz', '30'];
+            const result = solution(arr);
+            expect(result).toEqual([10, 20, 30]);
+        });
+
+        test('should return an empty array if all values are non-numeric', () => {
+            const arr = ['abc', 'def', 'xyz'];
+            const result = solution(arr);
+            expect(result).toEqual([]);
+        });
+
+        test('should handle an empty array', () => {
+            const arr = [];
+            const result = solution(arr);
+            expect(result).toEqual([]);
+        });
+
+        test('should handle an array with a single number', () => {
+            const arr = ['42'];
+            const result = solution(arr);
+            expect(result).toEqual([42]);
         });
     });
 }

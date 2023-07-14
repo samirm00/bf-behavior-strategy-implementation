@@ -1,5 +1,3 @@
-// #todo
-
 'use strict';
 
 /**
@@ -14,8 +12,21 @@
  */
 
 // -------- your solutions --------
+const checkIfNumberIsDivisibleByThreeOrFiveOrBoth1 = (num = 0) => {
+    if (num % 3 === 0 && num % 5 === 0) {
+        return 'fizzbuzz';
+    } else if (num % 3 === 0 && num % 5 !== 0) {
+        return 'fizz';
+    } else if (num % 3 !== 0 && num % 5 === 0) {
+        return 'buzz';
+    } else {
+        return num;
+    }
+};
 
-for (const solution of [secretSolution]) {
+const mySolutions = [checkIfNumberIsDivisibleByThreeOrFiveOrBoth1];
+
+for (const solution of mySolutions) {
     describe(solution.name + ': fizbuzzish', () => {
         describe('default parameter is 0', () => {
             it('returns "fizzbuzz" when no argument is passed', () =>

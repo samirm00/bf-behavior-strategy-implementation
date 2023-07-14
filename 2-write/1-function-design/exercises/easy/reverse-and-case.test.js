@@ -12,41 +12,71 @@
  */
 
 // -------- your solutions --------
+const reverseStrAndChangeCase1 = (text = '', lowerCase = true) => {
+    let reverseStr = text.split('').reverse().join('');
+    if (lowerCase) {
+        reverseStr = reverseStr.toLowerCase();
+    } else {
+        reverseStr = reverseStr.toUpperCase();
+    }
 
-for (const solution of [secretSolution]) {
-    describe(
-        solution.name + ': reverses a string then sets to lower or upper case',
-        () => {
-            describe("the function's default parameters", () => {
-                it('second parameter defaults to true', () => {
-                    expect(solution('asdf')).toEqual('fdsa');
-                });
-                it('first parameter defaults to an empty string', () => {
-                    expect(solution()).toEqual('');
-                });
+    return reverseStr;
+};
+
+const reverseStrAndChangeCase2 = (text = '', lowerCase = true) => {
+    let reverseStr = text.split('').reverse().join('');
+    return (reverseStr = lowerCase
+        ? reverseStr.toLowerCase()
+        : reverseStr.toUpperCase());
+};
+
+const mySolutions = [reverseStrAndChangeCase1, reverseStrAndChangeCase2];
+for (const solution of mySolutions) {
+    describe(': reverses a string then sets to lower or upper case', () => {
+        describe("the function's default parameters", () => {
+            it('second parameter defaults to true', () => {
+                expect(solution('asdf')).toEqual('fdsa');
             });
-            // write the tests indicated by the comments
-            describe('when set to lower case', () => {
-                // when the text is an empty string
-                it(_, () => {
-                    expect(solution(_, _)).toEqual(_);
-                });
-                // when the text is all upper case
-                // when the text is all lower case
-                // when the text is mixed upper and lower case
-                // when the text contains punctuation
-                // when the text contains numbers
+            it('first parameter defaults to an empty string', () => {
+                expect(solution()).toEqual('');
             });
-            describe('when set to upper case', () => {
-                // when the text is an empty string
-                // when the text is all upper case
-                // when the text is all lower case
-                // when the text is mixed upper and lower case
-                // when the text contains punctuation
-                // when the text contains numbers
+        });
+        // write the tests indicated by the comments
+        describe('when set to lower case', () => {
+            // when the text is an empty string
+            it('emptyString -> emptyString', () => {
+                expect(solution('', true)).toEqual('');
             });
-        },
-    );
+            // when the text is all upper case
+            it('HELLO -> olleh', () => {
+                expect(solution('HELLO', true)).toEqual('olleh');
+            });
+            // when the text is all lower case
+            it('hello -> olleh', () => {
+                expect(solution('hello', true)).toEqual('olleh');
+            });
+            // when the text is mixed upper and lower case
+            it('heLLo -> olleh', () => {
+                expect(solution('heLLo', true)).toEqual('olleh');
+            });
+            // when the text contains punctuation
+            it('hello! -> !olleh', () => {
+                expect(solution('hello!', true)).toEqual('!olleh');
+            });
+            // when the text contains numbers
+            it('hello123 -> 321olleh', () => {
+                expect(solution('hello123', true)).toEqual('321olleh');
+            });
+        });
+        describe('when set to upper case', () => {
+            // when the text is an empty string
+            // when the text is all upper case
+            // when the text is all lower case
+            // when the text is mixed upper and lower case
+            // when the text contains punctuation
+            // when the text contains numbers
+        });
+    });
 }
 
 // minified solution for testing your tests

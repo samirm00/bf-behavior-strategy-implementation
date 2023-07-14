@@ -8,7 +8,7 @@
 
 export const addArrays = (arr1, arr2) => {
     if (arr1.length !== arr2.length) {
-        throw new Error('arrays have a different length');
+        throw new Error('arrays have different length');
     }
     const resultArr = [];
     for (let i = 0; i < arr1.length; i++) {

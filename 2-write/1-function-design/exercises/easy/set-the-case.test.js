@@ -12,8 +12,20 @@
  */
 
 // -------- your solutions --------
+const setTextCase1 = (text = '', lowerCase = true) => {
+    if (lowerCase) {
+        return text.toLowerCase();
+    } else {
+        return text.toUpperCase();
+    }
+};
 
-for (const solution of [secretSolution]) {
+const setTextCase2 = (text = '', lowerCase = true) => {
+    return lowerCase ? text.toLowerCase() : text.toUpperCase();
+};
+const mySolutions = [setTextCase1, setTextCase2];
+
+for (const solution of mySolutions) {
     describe(solution.name + ': sets a text to lower or upper case', () => {
         describe("the function's default parameters", () => {
             it('second parameter defaults to true', () => {
@@ -23,25 +35,65 @@ for (const solution of [secretSolution]) {
                 expect(solution()).toEqual('');
             });
         });
-        // write the tests indicated by the comments
+
         describe('when set to lower case', () => {
-            // when the text is an empty string
-            it(_, () => {
-                expect(solution(_, _)).toEqual(_);
+            it('emptyString, true -> emptyString', () => {
+                expect(solution('', true)).toEqual('');
             });
-            // when the text is all upper case
-            // when the text is all lower case
-            // when the text is mixed upper and lower case
-            // when the text contains punctuation
-            // when the text contains numbers
+
+            it('ALLUPPERCASE, true -> alluppercase', () => {
+                expect(solution('ALLUPPERCASE', true)).toEqual('alluppercase');
+            });
+
+            it('alllowercase, true -> alllowercase', () => {
+                expect(solution('alllowercase', true)).toEqual('alllowercase');
+            });
+
+            it('MiXeDUppERaNDloWER, true -> mixedupperandlower', () => {
+                expect(solution('MiXeDUppERaNDloWER', true)).toEqual(
+                    'mixedupperandlower',
+                );
+            });
+
+            it('Text!With@Punctuation, true -> text!with@punctuation', () => {
+                expect(solution('Text!With@Punctuation', true)).toEqual(
+                    'text!with@punctuation',
+                );
+            });
+
+            it('1234567890, true -> 1234567890', () => {
+                expect(solution('1234567890', true)).toEqual('1234567890');
+            });
         });
+
         describe('when set to upper case', () => {
-            // when the text is an empty string
-            // when the text is all upper case
-            // when the text is all lower case
-            // when the text is mixed upper and lower case
-            // when the text contains punctuation
-            // when the text contains numbers
+            it('emptyString, false -> EMPTYSTRING', () => {
+                expect(solution('', false)).toEqual('');
+            });
+
+            it('ALLUPPERCASE, false -> ALLUPPERCASE', () => {
+                expect(solution('ALLUPPERCASE', false)).toEqual('ALLUPPERCASE');
+            });
+
+            it('alllowercase, false -> ALLLOWERCASE', () => {
+                expect(solution('alllowercase', false)).toEqual('ALLLOWERCASE');
+            });
+
+            it('MiXeDUppERaNDloWER, false -> MIXEDUPPERANDLOWER', () => {
+                expect(solution('MiXeDUppERaNDloWER', false)).toEqual(
+                    'MIXEDUPPERANDLOWER',
+                );
+            });
+
+            it('Text!With@Punctuation, false -> TEXT!WITH@PUNCTUATION', () => {
+                expect(solution('Text!With@Punctuation', false)).toEqual(
+                    'TEXT!WITH@PUNCTUATION',
+                );
+            });
+
+            it('1234567890, false -> 1234567890', () => {
+                expect(solution('1234567890', false)).toEqual('1234567890');
+            });
         });
     });
 }
